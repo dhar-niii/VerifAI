@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-obsidian text-ink font-sans antialiased;
+    /* clip keeps off-screen slide-in drawers from creating horizontal scroll */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.4);
+    color: #f9fafb;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-cyber/70 ring-offset-2 ring-offset-obsidian;
+  }
+
+  /* Tactical scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b101c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 8px;
+    border: 2px solid #0b101c;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+  }
+}
+
+@layer components {
+  /* Tactical dot / grid matrix background */
+  .grid-matrix {
+    background-image:
+      linear-gradient(rgba(31, 41, 55, 0.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31, 41, 55, 0.55) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .dot-matrix {
+    background-image: radial-gradient(rgba(156, 163, 175, 0.28) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .glass {
+    @apply bg-surface/70 backdrop-blur-xl border border-edge;
+  }
+
+  .mono-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-mist;
+  }
+
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 3px,
+      rgba(0, 0, 0, 0.22) 4px
+    );
+    mix-blend-mode: multiply;
+  }
+
+  /* ELA forensic matrix filter */
+  .ela-view {
+    filter: grayscale(1) contrast(1.7) brightness(0.62) sepia(1) hue-rotate(140deg) saturate(3.2);
+  }
+}
